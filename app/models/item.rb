@@ -7,10 +7,13 @@ class Item < ApplicationRecord
   belongs_to_active_hash :estimated_shipping_date
 
   belongs_to :user
+  has_one_attached :image
 
   with_options presence: true do
     validates :name
-    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+    VALID_PRICE_REGEX = /\A[0-9]+\z/
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
+                      format: { with: VALID_PRICE_REGEX }
     validates :description
     validates :category_id
     validates :status_id

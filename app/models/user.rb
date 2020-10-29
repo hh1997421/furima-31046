@@ -15,4 +15,7 @@ class User < ApplicationRecord
   validates :last_name_kana,     presence: true, format: { with: VALID_KANA_REGEX , message: 'is invalid. Input full-width katakana characters.' } # ここがフリガナ全角の正規表現
   validates :first_name_kana,    presence: true, format: { with: VALID_KANA_REGEX , message: 'is invalid. Input full-width katakana characters.' } # ここがフリガナ全角の正規表現
   validates :birth_date,         presence: true
+
+
+  has_many :items
 end
