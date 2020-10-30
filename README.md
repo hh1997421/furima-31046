@@ -24,17 +24,17 @@
 
 ## items テーブル
 
-| Column           | Type      | Options                          |
-| ---------------- | --------  | -------------------------------- |
-| user             | references| null: false, foreign_key: true   |
-| name             | string    | null: false                      |
-| description      | text      | null: false                      |
-| category_id      | integer   | null: false                      |
-| condition_id     | integer   | null: false                      |
-| postage_payer_id | integer   | null: false                      |
-| prefecture_id    | integer   | null: false                      |
-| handling_time_id | integer   | null: false                      |
-| price            | integer   | null: false                      |
+| Column                     | Type      | Options                          |
+| -------------------------- | --------  | -------------------------------- |
+| user                       | references| null: false, foreign_key: true   |
+| name                       | string    | null: false                      |
+| description                | text      | null: false                      |
+| category_id                | integer   | null: false                      |
+| status_id                  | integer   | null: false                      |
+| shipping_charge_id         | integer   | null: false                      |
+| prefecture_id              | integer   | null: false                      |
+| estimated_shipping_date_id | integer   | null: false                      |
+| price                      | integer   | null: false                      |
 
 
 
