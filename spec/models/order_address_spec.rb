@@ -39,24 +39,24 @@ RSpec.describe OrderAddress, type: :model do
       expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
     end
     it '郵便番号には-がないと保存できないこと' do
-      @order_address.postal_number = 1234567
+      @order_address.postal_number = 1_234_567
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include("Postal number is invalid. Include hyphen(-)")
+      expect(@order_address.errors.full_messages).to include('Postal number is invalid. Include hyphen(-)')
     end
     it '電話番号には-があると保存できないこと' do
-      @order_address.phone_number = 123-4564-7890
+      @order_address.phone_number = 123 - 4564 - 7890
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include("Phone number does not require a hyphen and must be within 11 digits")
+      expect(@order_address.errors.full_messages).to include('Phone number does not require a hyphen and must be within 11 digits')
     end
     it '電話番号は11桁以下でないと保存できないこと' do
-      @order_address.phone_number = 111111111111
+      @order_address.phone_number = 111_111_111_111
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include("Phone number does not require a hyphen and must be within 11 digits")
+      expect(@order_address.errors.full_messages).to include('Phone number does not require a hyphen and must be within 11 digits')
     end
     it '電話番号は数字のみでないと保存できないこと' do
       @order_address.phone_number = 'abcdefghij'
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include("Phone number does not require a hyphen and must be within 11 digits")
+      expect(@order_address.errors.full_messages).to include('Phone number does not require a hyphen and must be within 11 digits')
     end
     it 'user_idが空だと保存できないこと' do
       @order_address.user_id = nil
@@ -73,5 +73,5 @@ RSpec.describe OrderAddress, type: :model do
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Token can't be blank")
     end
-  end 
+  end
 end
