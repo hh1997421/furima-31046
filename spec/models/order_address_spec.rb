@@ -49,7 +49,7 @@ RSpec.describe OrderAddress, type: :model do
       expect(@order_address.errors.full_messages).to include('Postal number is invalid. Include hyphen(-)')
     end
     it '電話番号には-があると保存できないこと' do
-      @order_address.phone_number = 123 - 4564 - 7890
+      @order_address.phone_number = "123 - 4564 - 7890"
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include('Phone number does not require a hyphen and must be within 11 digits')
     end
