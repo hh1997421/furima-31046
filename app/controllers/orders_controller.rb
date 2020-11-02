@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
   end
 
   def whether_the_seller_and_the_buyer_are_equal
-    redirect_to root_path unless current_user == @item.user
+    redirect_to root_path unless current_user && user_signed_in? == @item.user
   end
 
   def order_params
