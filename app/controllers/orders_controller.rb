@@ -2,9 +2,13 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
   before_action :check_if_it_is_a_ordered_item, only: [:index, :create]
   before_action :whether_the_seller_and_the_buyer_are_equal, only: [:index, :create]
+  
 
   def index
     @order_address = OrderAddress.new
+    unless user_signed_in?
+      redirect_to root_path
+    end
   end
 
   def create
@@ -25,13 +29,13 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  def check_if_it_is_a_ordered_item
-    redirect_to root_path unless @item.order.nil?
-  end
+   def check_if_it_is_a_ordered_item
+     redirect_to root_path unless @item.order.nil?
+   end
 
-  def whether_the_seller_and_the_buyer_are_equal
-    redirect_to root_path unless current_user && user_signed_in? == @item.user
-  end
+   def whether_the_seller_and_the_buyer_are_equal
+     redirect_to root_path  if user_signed_in? && current_user == @item.user
+   end
 
   def order_params
     params.require(:order_address).permit(:prefecture_id, :postal_number, :city, :house_number, :building_name, :phone_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
@@ -46,3 +50,5 @@ class OrdersController < ApplicationController
     )
   end
 end
+
+
