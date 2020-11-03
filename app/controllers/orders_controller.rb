@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   def index
     @order_address = OrderAddress.new
     unless user_signed_in?
-      redirect_to root_path
+      redirect_to '/users/sign_in'
     end
   end
 
